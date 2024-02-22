@@ -29,8 +29,6 @@ export function SignIn() {
         const credentials = Realm.Credentials.jwt(idToken)
 
         await app.logIn(credentials)
-
-        console.log(credentials)
       } else {
         Alert.alert(
           'Entrar',
@@ -39,7 +37,6 @@ export function SignIn() {
         setIsAuthenticating(false)
       }
     } catch (error) {
-      console.log(error)
       Alert.alert('Entrar', 'Não foi possível conectar-se a sua conta google.')
       setIsAuthenticating(false)
     }
