@@ -3,15 +3,20 @@ import {
   Roboto_700Bold,
   useFonts,
 } from '@expo-google-fonts/roboto'
+import { AppProvider, UserProvider } from '@realm/react'
 import { StatusBar } from 'react-native'
 import { ThemeProvider } from 'styled-components/native'
 
-import { Loading } from './src/components/Loading'
-import { SignIn } from './src/screens/SignIn'
+import { Loading } from '@/components/Loading'
+import { Home } from '@/screens/Home'
+import { SignIn } from '@/screens/SignIn'
+
 import theme from './src/theme'
 
 export default function App() {
-  const AndroidClientID = process.env.EXPO_PUBLIC_ANDROID_CLIENT_ID
+  const RealmId = process.env.EXPO_PUBLIC_REALM_APP_ID as string // caso der algum erro olhar aqui para ver se o RealmId está correto
+
+  console.log('RealmId', RealmId)
 
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
@@ -23,13 +28,17 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <SignIn />
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor="transparent"
-        translucent
-      />
-    </ThemeProvider>
+    <AppProvider id={RealmId}>
+      <ThemeProvider theme={theme}>
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor="transparent"
+          translucent
+        />
+        <UserProvider fallback={SignIn}>
+          <Home />
+        </UserProvider>
+      </ThemeProvider>
+    </AppProvider>
   )
 }
