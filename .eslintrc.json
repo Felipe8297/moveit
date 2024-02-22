@@ -4,6 +4,7 @@
 
   "rules": {
     "simple-import-sort/imports": "error",
-    "camelcase": "off"
+    "camelcase": "off",
+    "no-use-before-define": "off"
   }
 }
