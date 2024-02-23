@@ -1,4 +1,5 @@
-import { TextInputProps } from 'react-native'
+import { forwardRef } from 'react'
+import { TextInput, TextInputProps } from 'react-native'
 
 import theme from '@/theme'
 
@@ -8,16 +9,21 @@ type TextAreaInputProps = TextInputProps & {
   label: string
 }
 
-export function TextAreaInput({ label, ...rest }: TextAreaInputProps) {
-  return (
-    <S.Container>
-      <S.Label>{label}</S.Label>
-      <S.Input
-        placeholderTextColor={theme.COLORS.GRAY_400}
-        multiline
-        autoCapitalize="sentences"
-        {...rest}
-      />
-    </S.Container>
-  )
-}
+const TextAreaInput = forwardRef<TextInput, TextAreaInputProps>(
+  ({ label, ...rest }, ref) => {
+    return (
+      <S.Container>
+        <S.Label>{label}</S.Label>
+        <S.Input
+          ref={ref}
+          placeholderTextColor={theme.COLORS.GRAY_400}
+          multiline
+          autoCapitalize="sentences"
+          {...rest}
+        />
+      </S.Container>
+    )
+  },
+)
+
+export { TextAreaInput }

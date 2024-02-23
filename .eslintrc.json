@@ -5,6 +5,7 @@
   "rules": {
     "simple-import-sort/imports": "error",
     "camelcase": "off",
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "react/display-name": "off"
   }
 }
