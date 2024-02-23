@@ -1,14 +1,15 @@
 import { Car, Key } from 'phosphor-react-native'
+import { TouchableOpacityProps } from 'react-native'
 
 import theme from '@/theme'
 
 import * as S from './styles'
 
-type CartStatusProps = {
+type CartStatusProps = TouchableOpacityProps & {
   licensePlate?: string | null
 }
 
-export function CartStatus({ licensePlate = null }: CartStatusProps) {
+export function CartStatus({ licensePlate = null, ...rest }: CartStatusProps) {
   const Icon = licensePlate ? Car : Key
   const message = licensePlate
     ? `Veículo ${licensePlate} em uso.`
@@ -16,7 +17,7 @@ export function CartStatus({ licensePlate = null }: CartStatusProps) {
   const status = licensePlate ? 'chegada' : 'saída'
 
   return (
-    <S.Container>
+    <S.Container {...rest}>
       <S.IconBox>
         <Icon size={32} color={theme.COLORS.BRAND_LIGHT} />
       </S.IconBox>

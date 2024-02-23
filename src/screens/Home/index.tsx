@@ -1,14 +1,25 @@
+import { useNavigation } from '@react-navigation/native'
+
 import { CartStatus } from '@/components/CarStatus'
-import { Header } from '@/components/Header'
+import { HomeHeader } from '@/components/HomeHeader'
 
 import * as S from './styles'
 
 export function Home() {
+  const navigation = useNavigation()
+
+  function handleNavigateToDeparture() {
+    navigation.navigate('departure')
+  }
+
   return (
     <S.Container>
-      <Header />
+      <HomeHeader />
       <S.Content>
-        <CartStatus licensePlate="XXX-000" />
+        <CartStatus
+          licensePlate="XXX-000"
+          onPress={handleNavigateToDeparture}
+        />
       </S.Content>
     </S.Container>
   )

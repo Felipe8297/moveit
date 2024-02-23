@@ -7,7 +7,7 @@ import theme from '@/theme'
 
 import * as S from './styles'
 
-export function Header() {
+export function HomeHeader() {
   const app = useApp()
   const user = useUser()
   const insets = useSafeAreaInsets()
